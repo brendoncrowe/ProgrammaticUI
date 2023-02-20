@@ -8,12 +8,26 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .systemGray2 // .systemColors are dark mode ready
+        configNavBar()
     }
-
-
+    
+    private func configNavBar() {
+        // set title for the navigation bar
+        navigationItem.title = "Programmatic UI"
+        
+        
+        // adding UIBarButtonItem to the navigation bar
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(showSettings(_:)))
+    }
+    
+    @objc private func showSettings(_ sender: UIBarButtonItem) {
+        print("Show Settings")
+    }
+    
+    
 }
 

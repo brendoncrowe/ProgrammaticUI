@@ -11,9 +11,15 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
+    // Pre iOS 13, the window property for the app was here in AppDelegate
+    // var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Pre iOS 13, this was where UI and view hierarchy was setup programmatically
+        
+        
         return true
     }
 
