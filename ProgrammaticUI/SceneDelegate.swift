@@ -31,10 +31,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Steps to configure programmatic ui in SceneDelegate
         // Steps in configuring the window property
         
-        
-        
-        
-        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         // set the size of the window frame to take up the entire screen of the device
         // instantiating the window with a frame

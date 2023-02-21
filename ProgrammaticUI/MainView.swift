@@ -7,6 +7,8 @@
 
 import UIKit
 
+// THE ORDER OF VIEWS/SUBVIEWS IS IMPORTANT! REMEMBER VIEW HIERARCHY WHEN USING AUTO LAYOUT
+
 class MainView: UIView {
 
     let defaultMessage = "No background color. Please go to settings"
@@ -25,7 +27,13 @@ class MainView: UIView {
     }() // () is a method call; creates a closure and calls simultaneously
     
     // create a button
-    
+    public lazy var resetButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Reset", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.backgroundColor = .systemRed
+        return button
+    }()
     
     
     // if the view gets called programmatically, init(frame:), this initializer is called
@@ -41,10 +49,22 @@ class MainView: UIView {
     }
     
     private func commonInit() {
-        setMessageLabelConstraints()
+        setupMessageLabelConstraints()
+        setupResetButtonConstraints()
     }
     
-    private func setMessageLabelConstraints() {
+    private func setupResetButtonConstraints() {
+        addSubview(resetButton)
+        resetButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Constraints
+        NSLayoutConstraint.activate([
+            resetButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            resetButton.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 40)
+        ])
+    }
+    
+    private func setupMessageLabelConstraints() {
         // add the messageLabel to the MainView
         addSubview(messageLabel) // returns the messageLabel
         

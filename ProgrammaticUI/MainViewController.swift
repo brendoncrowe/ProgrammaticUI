@@ -23,12 +23,14 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemGray3 // .systemColors are dark mode ready
         configNavBar()
+        
+        // add target/action for reset button
+        mainView.resetButton.addTarget(self, action: #selector(resetAppColor(_:)), for: .touchUpInside)
     }
     
     private func configNavBar() {
         // set title for the navigation bar
         navigationItem.title = "Programmatic UI"
-        
         
         // adding UIBarButtonItem to the navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(showSettings(_:)))
@@ -41,15 +43,17 @@ class MainViewController: UIViewController {
         let settingsVC = SettingsViewController()
         
         // you could present the ViewController modally
-//        present(settingsVC, animated: true)
-//        settingsVC.modalPresentationStyle = .overCurrentContext
-//        settingsVC.modalTransitionStyle = .flipHorizontal
-        
+        // present(settingsVC, animated: true)
+        // settingsVC.modalPresentationStyle = .overCurrentContext
+        // settingsVC.modalTransitionStyle = .flipHorizontal
         
         navigationController?.pushViewController(settingsVC, animated: true)
-        
     }
     
+    @objc private func resetAppColor(_ sender: UIButton) {
+        print("reset app color")
+        view.backgroundColor = .white
+        mainView.messageLabel.text = "The color has changed"
+    }
     
 }
-
