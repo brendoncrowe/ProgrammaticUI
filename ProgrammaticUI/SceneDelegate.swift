@@ -45,7 +45,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // window?.rootViewController = ViewController()
         
         // embedding a UIViewController in a UINavigationController
-        window?.rootViewController = UINavigationController(rootViewController: ViewController())
+        window?.rootViewController = UINavigationController(rootViewController: MainViewController())
         
         window?.makeKeyAndVisible()
     }
