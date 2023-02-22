@@ -19,13 +19,18 @@ class MainViewController: UIViewController {
         view = mainView
     }
     
-    override func viewDidLoad() {
+    override func viewDidLoad() { // called on initial load, only once
         super.viewDidLoad()
-        view.backgroundColor = .systemGray3 // .systemColors are dark mode ready
+        view.backgroundColor = .systemBackground
         configNavBar()
         
         // add target/action for reset button
         mainView.resetButton.addTarget(self, action: #selector(resetAppColor(_:)), for: .touchUpInside)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) { // called every time the view will appear 
+        super.viewWillAppear(true)
+        updateAppColor()
     }
     
     private func configNavBar() {
@@ -36,12 +41,15 @@ class MainViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(showSettings(_:)))
     }
     
+    private func updateAppColor() {
+        if let colorName = UserDefaults.standard.object(forKey: AppKey.appColorKey) as? String {
+            view.backgroundColor = UIColor(named: colorName)
+        }
+    }
+    
     @objc private func showSettings(_ sender: UIBarButtonItem) {
-        print("Show Settings")
-        
         // segue to the settings view controller
         let settingsVC = SettingsViewController()
-        
         // you could present the ViewController modally
         // present(settingsVC, animated: true)
         // settingsVC.modalPresentationStyle = .overCurrentContext
@@ -51,9 +59,6 @@ class MainViewController: UIViewController {
     }
     
     @objc private func resetAppColor(_ sender: UIButton) {
-        print("reset app color")
         view.backgroundColor = .white
-        mainView.messageLabel.text = "The color has changed"
     }
-    
 }

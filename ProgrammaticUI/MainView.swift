@@ -11,7 +11,7 @@ import UIKit
 
 class MainView: UIView {
 
-    let defaultMessage = "No background color. Please go to settings"
+    let defaultMessage = "Reset color with Button"
     
     // create a label
     // a lazy variable is a property whose initial value is not calculated until the first time it's called.
